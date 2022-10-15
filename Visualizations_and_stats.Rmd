@@ -1,0 +1,304 @@
+---
+title: "Salmon_data"
+author: "Rikeem Sholes"
+date: "December 16, 2021"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Loading Libraries
+```{r, message=FALSE, warning=FALSE}
+library(knitr)
+library(dplyr)
+library(ggplot2)
+library("readxl")
+library(hrbrthemes)
+```
+
+## Importing Data
+```{r}
+#Import data from Baseline Measurements sheet
+salmon_data <- read_excel('C:/Users/rikee/OneDrive/Desktop/PhD Resources/Data/Salmon_data.xlsx', sheet = "Baseline_Measurements_Sound")
+salmon_data_4 <- read_excel('C:/Users/rikee/OneDrive/Desktop/PhD Resources/Data/Salmon_data.xlsx', sheet = "Sound_Treatment_Data_4", na="0")
+salmon_data_3 <- read_excel('C:/Users/rikee/OneDrive/Desktop/PhD Resources/Data/Salmon_data.xlsx', sheet = "Sound_Treatment_Data_3", na="0")
+salmon_data_2 <- read_excel('C:/Users/rikee/OneDrive/Desktop/PhD Resources/Data/Salmon_data.xlsx', sheet = "Sound_Treatment_Data_2", na="0")
+salmon_data_1 <- read_excel('C:/Users/rikee/OneDrive/Desktop/PhD Resources/Data/Salmon_data.xlsx', sheet = "Sound_Treatment_Data_1", na="0")
+```
+
+## Plotting rearing habitat vs. Total body weight (g)
+```{r, echo=FALSE, message=FALSE}
+ggplot(salmon_data, aes(x=Rearing_Habitat, y=Weight, color=Rearing_Habitat)) + geom_boxplot(outlier.colour = "red") + theme_dark() + geom_dotplot(binaxis='y', stackdir='center', dotsize=1)
+```
+```{r, echo=FALSE, message=FALSE}
+ggplot(salmon_data, aes(x=Rearing_Habitat_Specific, y=Weight, color=Rearing_Habitat_Specific)) + geom_boxplot(outlier.colour = "red") + theme_dark() + geom_dotplot(binaxis='y', stackdir='center', dotsize=1)
+```
+
+## Plotting rearing habitat vs. Trunk Canal Neuromasts
+```{r, echo=FALSE, message=FALSE}
+ggplot(salmon_data, aes(x=Rearing_Habitat, y=Trunk_CN, color=Rearing_Habitat)) + geom_boxplot(outlier.colour = "red") + theme_dark()+ geom_dotplot(binaxis='y', stackdir='center', dotsize=1)
+```
+
+```{r, echo=FALSE, message=FALSE}
+ggplot(salmon_data, aes(x=Rearing_Habitat_Specific, y=Trunk_CN, color=Rearing_Habitat_Specific)) + geom_boxplot(outlier.colour = "red") + theme_dark() + geom_dotplot(binaxis='y', stackdir='center', dotsize=1)
+```
+
+## Plotting rearing habitat vs. Forklength
+```{r, echo=FALSE, message=FALSE}
+ggplot(salmon_data, aes(x=Rearing_Habitat, y=Fork_Length, color=Rearing_Habitat)) + geom_boxplot(outlier.colour = "red") + theme_dark()+ geom_dotplot(binaxis='y', stackdir='center', dotsize=1)
+```
+
+```{r, echo=FALSE, message=FALSE}
+ggplot(salmon_data, aes(x=Rearing_Habitat_Specific, y=Fork_Length, color=Rearing_Habitat_Specific)) + geom_boxplot(outlier.colour = "red") + theme_dark() + geom_dotplot(binaxis='y', stackdir='center', dotsize=1)
+```
+
+## Plotting rearing habitat vs. Over Eye Canal Neuromasts
+```{r, echo=FALSE, message=FALSE}
+ggplot(salmon_data, aes(x=Rearing_Habitat, y=Over_Eye_CN, color=Rearing_Habitat)) + geom_boxplot(outlier.colour = "red") + theme_dark()+ geom_dotplot(binaxis='y', stackdir='center', dotsize=1)
+```
+
+```{r, echo=FALSE, message=FALSE}
+ggplot(salmon_data, aes(x=Rearing_Habitat_Specific, y=Over_Eye_CN, color=Rearing_Habitat_Specific)) + geom_boxplot(outlier.colour = "red") + theme_dark() + geom_dotplot(binaxis='y', stackdir='center', dotsize=1)
+```
+
+## Plotting rearing habitat vs. Trunk Superficial Neuromasts
+```{r, echo=FALSE, message=FALSE}
+ggplot(salmon_data, aes(x=Rearing_Habitat, y=Over_Eye_SN, color=Rearing_Habitat)) + geom_boxplot(outlier.colour = "red") + theme_dark()+ geom_dotplot(binaxis='y', stackdir='center', dotsize=1)
+```
+
+```{r, echo=FALSE, message=FALSE}
+ggplot(salmon_data, aes(x=Rearing_Habitat_Specific, y=Over_Eye_SN, color=Rearing_Habitat_Specific)) + geom_boxplot(outlier.colour = "red") + theme_dark()+ geom_dotplot(binaxis='y', stackdir='center', dotsize=1)
+```
+
+## Plotting rearing habitat vs. Operculum Canal Neuromasts
+```{r, echo=FALSE, message=FALSE}
+ggplot(salmon_data, aes(x=Rearing_Habitat, y=Operculum_CN, color=Rearing_Habitat)) + geom_boxplot(outlier.colour = "red") + theme_dark()+ geom_dotplot(binaxis='y', stackdir='center', dotsize=1)
+```
+
+```{r, echo=FALSE, message=FALSE}
+ggplot(salmon_data, aes(x=Rearing_Habitat_Specific, y=Operculum_CN, color=Rearing_Habitat_Specific)) + geom_boxplot(outlier.colour = "red") + theme_dark() + geom_dotplot(binaxis='y', stackdir='center', dotsize=1)
+```
+
+## Plotting rearing habitat vs. Operculum Superficial Neuromasts
+```{r, echo=FALSE, message=FALSE}
+ggplot(salmon_data, aes(x=Rearing_Habitat, y=Operculum_SN, color=Rearing_Habitat)) + geom_boxplot(outlier.colour = "red") + theme_dark()+ geom_dotplot(binaxis='y', stackdir='center', dotsize=1)
+```
+
+```{r, message=FALSE, echo=FALSE}
+ggplot(salmon_data, aes(x=Rearing_Habitat_Specific, y=Operculum_SN, color=Rearing_Habitat_Specific)) + geom_boxplot(outlier.colour = "red") + theme_dark() + geom_dotplot(binaxis='y', stackdir='center', dotsize=1)
+```
+
+## Checking for Normality
+
+```{r}
+#Testing for weight normality
+ggplot(salmon_data, aes(x=Weight)) + geom_histogram(bins = 6)
+qqnorm(salmon_data$Weight, pch=1, frame=FALSE)
+qqline(salmon_data$Weight, col = "steelblue", lwd = 2)
+
+#Summarizing mean and standard deviation of group weights
+salmon_by_rearing <- group_by(salmon_data, Rearing_Habitat_Specific)
+
+summarize(salmon_by_rearing, group_mean = mean(Weight, na.rm=TRUE), group_sd = sd(Weight, na.rm=TRUE))
+```
+
+```{r}
+#Testing for nose neuromast data for normality
+ggplot(salmon_data, aes(x=Nose)) + geom_histogram(bins = 5)
+qqnorm(salmon_data$Nose, pch=1, frame=FALSE)
+qqline(salmon_data$Nose, col = "steelblue", lwd = 2)
+
+#Summarizing mean and standard deviation of group weights
+salmon_by_rearing <- group_by(salmon_data, Rearing_Habitat_Specific)
+
+summarize(salmon_by_rearing, group_mean = mean(Nose, na.rm=TRUE), group_sd = sd(Nose, na.rm=TRUE))
+```
+
+```{r}
+#Testing for over eye canal neuromast data for normality
+ggplot(salmon_data, aes(x=Over_Eye_CN)) + geom_histogram(bins = 5)
+qqnorm(salmon_data$Over_Eye_CN, pch=1, frame=FALSE)
+qqline(salmon_data$Over_Eye_CN, col = "steelblue", lwd = 2)
+
+#Summarizing mean and standard deviation of group weights
+salmon_by_rearing <- group_by(salmon_data, Rearing_Habitat_Specific)
+
+summarize(salmon_by_rearing, group_mean = mean(Over_Eye_CN, na.rm=TRUE), group_sd = sd(Over_Eye_CN, na.rm=TRUE))
+```
+
+```{r}
+#Testing for Over Eye superficial neuromast data for normality
+ggplot(salmon_data, aes(x=Over_Eye_SN)) + geom_histogram(bins = 5)
+qqnorm(salmon_data$Over_Eye_SN, pch=1, frame=FALSE)
+qqline(salmon_data$Over_Eye_SN, col = "steelblue", lwd = 2)
+
+#Summarizing mean and standard deviation of group weights
+salmon_by_rearing <- group_by(salmon_data, Rearing_Habitat_Specific)
+
+summarize(salmon_by_rearing, group_mean = mean(Over_Eye_SN, na.rm=TRUE), group_sd = sd(Over_Eye_SN, na.rm=TRUE))
+```
+
+```{r}
+#Testing for Operculum canal neuromast data for normality
+ggplot(salmon_data, aes(x=Operculum_CN)) + geom_histogram(bins = 4)
+qqnorm(salmon_data$Operculum_CN, pch=1, frame=FALSE)
+qqline(salmon_data$Operculum_CN, col = "steelblue", lwd = 2)
+
+#Summarizing mean and standard deviation of group weights
+salmon_by_rearing <- group_by(salmon_data, Rearing_Habitat_Specific)
+
+summarize(salmon_by_rearing, group_mean = mean(Operculum_CN, na.rm=TRUE), group_sd = sd(Operculum_CN, na.rm=TRUE))
+```
+
+```{r}
+#Testing for Operculum superficial neuromast data for normality
+ggplot(salmon_data, aes(x=Operculum_SN)) + geom_histogram(bins = 6)
+qqnorm(salmon_data$Operculum_SN, pch=1, frame=FALSE)
+qqline(salmon_data$Operculum_SN, col = "steelblue", lwd = 2)
+
+#Summarizing mean and standard deviation of group weights
+salmon_by_rearing <- group_by(salmon_data, Rearing_Habitat_Specific)
+
+summarize(salmon_by_rearing, group_mean = mean(Operculum_SN, na.rm=TRUE), group_sd = sd(Operculum_SN, na.rm=TRUE))
+```
+
+```{r}
+#Testing for Trunk canal neuromast data for normality
+ggplot(salmon_data, aes(x=Trunk_CN)) + geom_histogram(bins = 8)
+qqnorm(salmon_data$Trunk_CN, pch=1, frame=FALSE)
+qqline(salmon_data$Trunk_CN, col = "steelblue", lwd = 2)
+
+#Summarizing mean and standard deviation of group weights
+salmon_by_rearing <- group_by(salmon_data, Rearing_Habitat_Specific)
+
+summarize(salmon_by_rearing, group_mean = mean(Trunk_CN, na.rm=TRUE), group_sd = sd(Trunk_CN, na.rm=TRUE))
+```
+
+```{r}
+#Testing for Trunk canal neuromast data for normality
+ggplot(salmon_data, aes(x=Head_Total)) + geom_histogram(bins = 8)
+qqnorm(salmon_data$Head_Total, pch=1, frame=FALSE)
+qqline(salmon_data$Head_Total, col = "steelblue", lwd = 2)
+
+#Summarizing mean and standard deviation of group weights
+salmon_by_rearing <- group_by(salmon_data, Rearing_Habitat_Specific)
+
+summarize(salmon_by_rearing, group_mean = mean(Head_Total, na.rm=TRUE), group_sd = sd(Head_Total, na.rm=TRUE))
+```
+
+```{r}
+#Testing for fork length data for normality
+ggplot(salmon_data, aes(x=Fork_Length)) + geom_histogram(bins = 7)
+qqnorm(salmon_data$Fork_Length, pch=1, frame=FALSE)
+qqline(salmon_data$Fork_Length, col = "steelblue", lwd = 2)
+
+#Summarizing mean and standard deviation of group weights
+salmon_by_rearing <- group_by(salmon_data, Rearing_Habitat_Specific)
+
+summarize(salmon_by_rearing, group_mean = mean(Fork_Length, na.rm=TRUE), group_sd = sd(Fork_Length, na.rm=TRUE))
+```
+
+## T-tests
+```{r}
+#Sorting data for T-Tests
+heath_4 <- salmon_data %>%
+  filter(Rearing_Habitat_Specific == "Heath Tray 4")
+
+heath_5 <- salmon_data %>%
+  filter(Rearing_Habitat_Specific == "Heath Tray 5")
+
+redd <- salmon_data %>%
+  filter(Rearing_Habitat_Specific == "Redd box 5")  
+
+heath_all <- salmon_data %>%
+  filter(Rearing_Habitat == "Heath Tray")
+```
+
+
+```{r}
+# 2 sample T-test of heath tray weights
+t.test(heath_4$Weight, heath_5$Weight)
+```
+
+```{r}
+t.test(heath_all$Weight, redd$Weight)
+```
+
+## ANOVA
+
+```{r}
+#Performing ANOVA for Brain to Bodyweight
+salmon_weight_ANOVA <- lm(Brain_Weight_To_Body_Ratio ~ Rearing_Habitat_Specific, data = salmon_data_2)
+
+anova(salmon_weight_ANOVA)
+
+TukeyHSD(aov(salmon_weight_ANOVA))
+
+salmon_weight_ANOVA <- lm(Brain_Weight_To_Body_Ratio ~ Rearing_Habitat_Specific, data = salmon_data_3)
+
+anova(salmon_weight_ANOVA)
+
+TukeyHSD(aov(salmon_weight_ANOVA))
+
+salmon_weight_ANOVA <- lm(Brain_Weight_To_Body_Ratio ~ Rearing_Habitat_Specific, data = salmon_data_4)
+
+anova(salmon_weight_ANOVA)
+
+TukeyHSD(aov(salmon_weight_ANOVA))
+```
+
+```{r}
+#Performing ANOVA for weight
+salmon_weight_ANOVA <- lm(Weight ~ Rearing_Habitat_Specific, data = salmon_data_2)
+
+anova(salmon_weight_ANOVA)
+
+TukeyHSD(aov(salmon_weight_ANOVA))
+
+salmon_weight_ANOVA <- lm(Weight ~ Rearing_Habitat_Specific, data = salmon_data_3)
+
+anova(salmon_weight_ANOVA)
+
+TukeyHSD(aov(salmon_weight_ANOVA))
+
+salmon_weight_ANOVA <- lm(Weight ~ Rearing_Habitat_Specific, data = salmon_data_4)
+
+anova(salmon_weight_ANOVA)
+
+TukeyHSD(aov(salmon_weight_ANOVA))
+```
+
+```{r}
+#Performing ANOVA for trunk canal neuromasts
+
+salmon_trunk_ANOVA <- lm(Trunk_CN ~ Rearing_Habitat_Specific, data = salmon_data_2)
+
+anova(salmon_trunk_ANOVA)
+
+TukeyHSD(aov(salmon_trunk_ANOVA))
+
+salmon_trunk_ANOVA <- lm(Trunk_CN ~ Rearing_Habitat_Specific, data = salmon_data_3)
+
+anova(salmon_trunk_ANOVA)
+
+TukeyHSD(aov(salmon_trunk_ANOVA))
+
+salmon_trunk_ANOVA <- lm(Trunk_CN ~ Rearing_Habitat_Specific, data = salmon_data_4)
+
+anova(salmon_trunk_ANOVA)
+
+TukeyHSD(aov(salmon_trunk_ANOVA))
+```
+
+```{r}
+#Performing ANOVA for total head neuromasts
+
+salmon_head_ANOVA <- lm(Head_Total ~ Rearing_Habitat_Specific, data = salmon_data_4)
+
+anova(salmon_head_ANOVA)
+
+TukeyHSD(aov(salmon_head_ANOVA))
+```
+

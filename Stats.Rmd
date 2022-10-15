@@ -1,0 +1,140 @@
+---
+title: "Stats"
+author: "Rikeem Sholes"
+date: '2022-07-06'
+output:
+  pdf_document: default
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Loading Libraries
+```{r, message=FALSE, warning=FALSE}
+library(knitr)
+library(dplyr)
+library(ggplot2)
+library("readxl")
+library(hrbrthemes)
+```
+
+## Importing Data
+```{r}
+#Import data from Baseline Measurements sheet
+salmon_data <- read_excel('C:/Users/rikee/OneDrive/Desktop/PhD Resources/Data/Salmon_data.xlsx', sheet = "Baseline_Measurements_Sound")
+salmon_data_4 <- read_excel('C:/Users/rikee/OneDrive/Desktop/PhD Resources/Data/Salmon_data.xlsx', sheet = "Sound_Treatment_Data_4", na="0")
+salmon_data_3 <- read_excel('C:/Users/rikee/OneDrive/Desktop/PhD Resources/Data/Salmon_data.xlsx', sheet = "Sound_Treatment_Data_3", na="0")
+salmon_data_2 <- read_excel('C:/Users/rikee/OneDrive/Desktop/PhD Resources/Data/Salmon_data.xlsx', sheet = "Sound_Treatment_Data_2", na="0")
+salmon_data_1 <- read_excel('C:/Users/rikee/OneDrive/Desktop/PhD Resources/Data/Salmon_data.xlsx', sheet = "Sound_Treatment_Data_1", na="0")
+```
+
+## ANOVA
+
+```{r}
+#Performing ANOVA for Brain to Bodyweight
+salmon_weight_ANOVA <- lm(Brain_Weight_To_Body_Ratio ~ Rearing_Habitat_Specific, data = salmon_data_2)
+
+anova(salmon_weight_ANOVA)
+
+TukeyHSD(aov(salmon_weight_ANOVA))
+
+salmon_weight_ANOVA <- lm(Brain_Weight_To_Body_Ratio ~ Rearing_Habitat_Specific, data = salmon_data_3)
+
+anova(salmon_weight_ANOVA)
+
+TukeyHSD(aov(salmon_weight_ANOVA))
+
+salmon_weight_ANOVA <- lm(Brain_Weight_To_Body_Ratio ~ Rearing_Habitat_Specific, data = salmon_data_4)
+
+anova(salmon_weight_ANOVA)
+
+TukeyHSD(aov(salmon_weight_ANOVA))
+```
+
+```{r}
+#Performing ANOVA for weight
+salmon_weight_ANOVA <- lm(Weight ~ Rearing_Habitat_Specific, data = salmon_data_2)
+
+anova(salmon_weight_ANOVA)
+
+TukeyHSD(aov(salmon_weight_ANOVA))
+
+salmon_weight_ANOVA <- lm(Weight ~ Rearing_Habitat_Specific, data = salmon_data_3)
+
+anova(salmon_weight_ANOVA)
+
+TukeyHSD(aov(salmon_weight_ANOVA))
+
+salmon_weight_ANOVA <- lm(Weight ~ Rearing_Habitat_Specific, data = salmon_data_4)
+
+anova(salmon_weight_ANOVA)
+
+TukeyHSD(aov(salmon_weight_ANOVA))
+```
+
+```{r}
+#Performing ANOVA for trunk canal neuromasts
+
+salmon_trunk_ANOVA <- lm(Trunk_CN ~ Rearing_Habitat_Specific, data = salmon_data_2)
+
+anova(salmon_trunk_ANOVA)
+
+TukeyHSD(aov(salmon_trunk_ANOVA))
+
+salmon_trunk_ANOVA <- lm(Trunk_CN ~ Rearing_Habitat_Specific, data = salmon_data_3)
+
+anova(salmon_trunk_ANOVA)
+
+TukeyHSD(aov(salmon_trunk_ANOVA))
+
+salmon_trunk_ANOVA <- lm(Trunk_CN ~ Rearing_Habitat_Specific, data = salmon_data_4)
+
+anova(salmon_trunk_ANOVA)
+
+TukeyHSD(aov(salmon_trunk_ANOVA))
+```
+
+```{r}
+#Performing ANOVA for Fork Length
+
+salmon_trunk_ANOVA <- lm(Fork_Length ~ Rearing_Habitat_Specific, data = salmon_data_2)
+
+anova(salmon_trunk_ANOVA)
+
+TukeyHSD(aov(salmon_trunk_ANOVA))
+
+salmon_trunk_ANOVA <- lm(Fork_Length ~ Rearing_Habitat_Specific, data = salmon_data_3)
+
+anova(salmon_trunk_ANOVA)
+
+TukeyHSD(aov(salmon_trunk_ANOVA))
+
+salmon_trunk_ANOVA <- lm(Fork_Length ~ Rearing_Habitat_Specific, data = salmon_data_4)
+
+anova(salmon_trunk_ANOVA)
+
+TukeyHSD(aov(salmon_trunk_ANOVA))
+```
+
+```{r}
+#Performing ANOVA for TOtal Head Neuromasts
+salmon_trunk_ANOVA <- lm(Head_Total ~ Rearing_Habitat_Specific, data = salmon_data_2)
+
+anova(salmon_trunk_ANOVA)
+
+TukeyHSD(aov(salmon_trunk_ANOVA))
+
+salmon_trunk_ANOVA <- lm(Head_Total ~ Rearing_Habitat_Specific, data = salmon_data_3)
+
+anova(salmon_trunk_ANOVA)
+
+TukeyHSD(aov(salmon_trunk_ANOVA))
+
+salmon_trunk_ANOVA <- lm(Head_Total ~ Rearing_Habitat_Specific, data = salmon_data_4)
+
+anova(salmon_trunk_ANOVA)
+
+TukeyHSD(aov(salmon_trunk_ANOVA))
+```
